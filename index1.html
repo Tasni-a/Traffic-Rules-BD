@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Traffic System Web App</title>
+  <link rel="stylesheet" href="styles1.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">TrafficApp</div>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Live Map</a></li>
+        <li><a href="#">Reports</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <div class="profile-menu">
+        <img src="images/user-icon.png" alt="Profile" id="profileIcon" />
+        <div class="dropdown" id="profileDropdown">
+          <a href="#">Login</a>
+          <a href="#">Sign Up</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Real-time Traffic Updates for Your City</h1>
+      <p>Stay ahead with live traffic jams, accidents, and alerts.</p>
+      <button class="cta-btn">View Live Map</button>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="features">
+  <h2>Features</h2>
+  <div class="feature-cards">
+    <a href="#traffic-signs" class="feature-card">
+      <img src="images/stop-sign.png" alt="Traffic Signs Icon" />
+      <h3>Traffic Signs</h3>
+      <p>Learn and identify common road signs.</p>
+    </a>
+    <a href="#traffic-rules" class="feature-card">
+      <img src="images/rules.png" alt="Traffic Rules Icon" />
+      <h3>Traffic Rules</h3>
+      <p>Understand important traffic rules and regulations.</p>
+    </a>
+    <a href="complaint.html" class="feature-card">
+      <img src="images/complaint.png" alt="Complaint Form Icon" />
+      <h3>Complaint Form</h3>
+      <p>Report traffic violations and hazards.</p>
+    </a>
+    <a href="accident-reports.html" class="feature-card">
+      <img src="images/accident.png" alt="Accident Reports Icon" />
+      <h3>Accident Reports</h3>
+      <p>View latest accident reports in your area.</p>
+    </a>
+  </div>
+</section>
+
+
+
+  <script>
+    // Profile dropdown toggle
+    const profileIcon = document.getElementById('profileIcon');
+    const profileDropdown = document.getElementById('profileDropdown');
+
+    profileIcon.addEventListener('click', () => {
+      profileDropdown.style.display = profileDropdown.style.display === 'flex' ? 'none' : 'flex';
+    });
+
+    window.addEventListener('click', (e) => {
+      if (!profileIcon.contains(e.target) && !profileDropdown.contains(e.target)) {
+        profileDropdown.style.display = 'none';
+      }
+    });
+  </script>
+
+
+
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-section contact-info">
+      <h4>Contact Us</h4>
+      <p>Email: support@trafficapp.com</p>
+      <p>Phone: +880 1234 5678</p>
+      <p>Address: 123 Traffic Ave, City</p>
+    </div>
+
+    <div class="footer-section social-media">
+      <h4>Follow Us</h4>
+      <div class="social-icons">
+        <a href="#" aria-label="Facebook"><img src="facebook.png" alt="Facebook" /></a>
+        <a href="#" aria-label="Twitter"><img src="twitter.png" alt="Twitter" /></a>
+        <a href="#" aria-label="Instagram"><img src="instagram.png" alt="Instagram" /></a>
+        <a href="#" aria-label="LinkedIn"><img src="linkedin.png" alt="LinkedIn" /></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body>
+</html>

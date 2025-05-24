@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login - TrafficApp</title>
+  <link rel="stylesheet" href="styles1.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">TrafficApp</div>
+    <ul class="nav-links">
+      <li><a href="index1.html">Home</a></li>
+      <li><a href="live-map.html">Live Map</a></li>
+      <li><a href="traffic-signs.html">Traffic Signs</a></li>
+      <li><a href="traffic-rules.html">Traffic Rules</a></li>
+      <li><a href="accident-reports.html">Accident Reports</a></li>
+      <li><a href="complaint.html">Complaint Form</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Login form -->
+  <main class="form-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <label for="email">Email:</label>
+      <input type="email" id="email" required placeholder="Email" />
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" required placeholder="Password" />
+
+      <button type="submit">Login</button>
+    </form>
+  </main>
+
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const email = loginForm.email.value;
+      const password = loginForm.password.value;
+
+      // Send login request to backend API
+      fetch('http://your-backend-url/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          // Save JWT token in localStorage
+          localStorage.setItem('token', data.token);
+          alert('Login successful!');
+          window.location.href = "complaint.html"; // Redirect to complaint form page
+        } else {
+          alert(data.message); // Show error
+        }
+      })
+      .catch(error => console.error('Error:', error));
+    });
+  </script>
+
+</body>
+</html>

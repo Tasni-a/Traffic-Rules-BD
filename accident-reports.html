@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Accident Reports - TrafficApp</title>
+  <link rel="stylesheet" href="accident-reports.css" />
+  <!-- Include chart.js for pie and bar charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">TrafficApp</div>
+    <ul class="nav-links">
+      <li><a href="index1.html">Home</a></li>
+      <li><a href="live-map.html">Live Map</a></li>
+      <li><a href="traffic-signs.html">Traffic Signs</a></li>
+      <li><a href="traffic-rules.html">Traffic Rules</a></li>
+      <li><a href="complaint.html">Complaint form</Form></a></li>
+      <li><a href="accident-reports.html" class="active">Accident Reports</a></li>
+    </ul>
+    <div class="profile-menu">
+      <img src="images/user-icon.png" alt="Profile" id="profileIcon" />
+      <div class="dropdown" id="profileDropdown">
+        <a href="#">Profile</a>
+        <a href="login.html">Logout</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Accident Reports Section -->
+  <div class="accident-reports-container">
+    <h2>Accident Reports by Area</h2>
+
+    <!-- Pie Chart -->
+    <section class="chart-container">
+      <canvas id="accidentPieChart"></canvas>
+    </section>
+
+    <!-- Bar Chart -->
+    <section class="chart-container">
+      <canvas id="accidentBarChart"></canvas>
+    </section>
+
+    <!-- List of Accident Reports (for demonstration) -->
+    <section class="reports-list">
+      <h3>Recent Accident Reports</h3>
+      <div class="report-card">
+        <h4>Area: XYZ Street</h4>
+        <p><strong>Severity:</strong> High</p>
+        <p><strong>Incident:</strong> Car crash at XYZ intersection, multiple vehicles involved.</p>
+      </div>
+      <div class="report-card">
+        <h4>Area: ABC Road</h4>
+        <p><strong>Severity:</strong> Moderate</p>
+        <p><strong>Incident:</strong> Pedestrian hit by car, serious injuries.</p>
+      </div>
+      <!-- Add more cards dynamically based on backend data -->
+    </section>
+  </div>
+
+  <script>
+    // Data for Pie Chart (accident severity)
+    const pieData = {
+      labels: ['High Severity', 'Moderate Severity', 'Low Severity'],
+      datasets: [{
+        data: [50, 30, 20], // Example data, replace with real data
+        backgroundColor: ['#ff5733', '#ffcc00', '#28a745'],
+      }]
+    };
+
+    const pieConfig = {
+      type: 'pie',
+      data: pieData,
+    };
+
+    const accidentPieChart = new Chart(document.getElementById('accidentPieChart'), pieConfig);
+
+    // Data for Bar Chart (accidents by area)
+    const barData = {
+      labels: ['Area 1', 'Area 2', 'Area 3', 'Area 4', 'Area 5'],
+      datasets: [{
+        label: 'Accidents by Area',
+        data: [12, 15, 8, 25, 18], // Example data, replace with real data
+        backgroundColor: '#007bff',
+        borderColor: '#0056b3',
+        borderWidth: 1,
+      }]
+    };
+
+    const barConfig = {
+      type: 'bar',
+      data: barData,
+    };
+
+    const accidentBarChart = new Chart(document.getElementById('accidentBarChart'), barConfig);
+  </script>
+
+</body>
+</html>

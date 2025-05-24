@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Complaint Form - TrafficApp</title>
+  <link rel="stylesheet" href="complaint.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">TrafficApp</div>
+    <ul class="nav-links">
+      <li><a href="index1.html">Home</a></li>
+      <li><a href="live-map.html">Live Map</a></li>
+      <li><a href="traffic-signs.html">Traffic Signs</a></li>
+      <li><a href="traffic-rules.html">Traffic Rules</a></li>
+      <li><a href="complaint.html" class="active">Complaint Form</a></li>
+      <li><a href="accident-reports.html">Accident Reports</a></li>
+    
+    </ul>
+    <div class="profile-menu">
+      <img src="images/user-icon.png" alt="Profile" id="profileIcon" />
+      <div class="dropdown" id="profileDropdown">
+        <a href="#">Profile</a>
+        <a href="login.html">Logout</a>
+      </div>
+    </div>
+    
+  </nav>
+
+  <!-- Main container -->
+   <div class="complaint-image">
+  <video autoplay muted loop playsinline>
+    <source src="images/complaint-video.mp4" type="video/mp4" />
+    Sorry, your browser does not support the video tag.
+  </video>
+</div>
+
+    <div class="complaint-form">
+      <h2>Submit a Traffic Complaint</h2>
+      <form id="complaintForm">
+        <label for="email">Your Email:</label>
+        <input type="email" id="email" required placeholder="example@mail.com" />
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" required pattern="[0-9]{10,15}" placeholder="e.g. 017XXXXXXXX" />
+
+        <label for="location">Accident Location:</label>
+        <input type="text" id="location" required placeholder="Where did it happen?" />
+
+        <label for="description">Accident Description:</label>
+        <textarea id="description" rows="5" required placeholder="Describe what happened..."></textarea>
+
+        <button type="submit">Submit Complaint</button>
+      </form>
+      <div id="submitMessage" class="submit-message">Complaint submitted! Thank you.</div>
+    </div>
+  </div>
+
+  <script>
+    const complaintForm = document.getElementById('complaintForm');
+    const message = document.getElementById('submitMessage');
+
+    complaintForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      complaintForm.reset();
+
+      message.classList.add('show');
+      setTimeout(() => message.classList.remove('show'), 3000);
+
+      // TODO: Connect with backend or API here
+    });
+  </script>
+
+</body>
+</html>

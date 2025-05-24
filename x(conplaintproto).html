@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Complaint Form - TrafficApp</title>
+  <link rel="stylesheet" href="styles1.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">TrafficApp</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="live-map.html">Live Map</a></li>
+      <li><a href="traffic-signs.html">Traffic Signs</a></li>
+      <li><a href="traffic-rules.html">Traffic Rules</a></li>
+      <li><a href="accident-reports.html">Accident Reports</a></li>
+      <li><a href="complaint.html" class="active">Complaint Form</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main container -->
+  <div class="complaint-container">
+    <div class="complaint-image">
+      <img src="complaint-video.mp4" alt="Taking complaint" />
+    </div>
+    <div class="complaint-form">
+      <h2>Submit a Traffic Complaint</h2>
+      <form id="complaintForm">
+        <label for="email">Your Email:</label>
+        <input type="email" id="email" required placeholder="example@mail.com" />
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" required pattern="[0-9]{10,15}" placeholder="e.g. 017XXXXXXXX" />
+
+        <label for="location">Accident Location:</label>
+        <input type="text" id="location" required placeholder="Where did it happen?" />
+
+        <label for="description">Accident Description:</label>
+        <textarea id="description" rows="5" required placeholder="Describe what happened..."></textarea>
+
+        <button type="submit">Submit Complaint</button>
+      </form>
+      <div id="submitMessage" class="submit-message">Complaint submitted! Thank you.</div>
+    </div>
+  </div>
+
+  <script>
+    // Check if user is logged in (using localStorage for JWT in this example)
+    const token = localStorage.getItem('token'); // JWT token saved in localStorage after login
+
+    if (!token) {
+      alert('Please login first!');
+      window.location.href = 'login.html'; // Redirect to login if not logged in
+    }
+
+    // Handling the form submission
+    const complaintForm = document.getElementById('complaintForm');
+    const message = document.getElementById('submitMessage');
+
+    complaintForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const email = form.email.value;
+      const phone = form.phone.value;
+      const location = form.location.value;
+      const description = form.description.value;
+
+      // Send data to backend API
+      fetch('http://your-backend-url/complaints', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}` // Include JWT token for authorization
+        },
+        body: JSON.stringify({ email, phone, location, description })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          message.classList.add('show');
+          setTimeout(() => message.classList.remove('show'), 3000);
+          complaintForm.reset(); // Reset form after successful submission
+        } else {
+          alert(data.message); // Show error message
+        }
+      })
+      .catch(error => console.error('Error:', error));
+    });
+  </script>
+
+</body>
+</html>
